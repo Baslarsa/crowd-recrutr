@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model candidates {
+  email          String   @id @db.VarChar
+  first_name     String   @db.VarChar
+  last_name      String   @db.VarChar
+  created_at     DateTime @db.Timestamp(6)
+  image_url      String?  @db.VarChar
+  current_status status
+}
+
+enum status {
+  contact
+  dialogue
+  interview
+  offer
+  closed
+}
