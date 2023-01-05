@@ -17,7 +17,6 @@ services:
     container_name: postgres_crowd
     image: postgres:latest
     environment:
-      DATABASE_URL: postgresql://admin:password@host.docker.internal:5432/postgres
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
