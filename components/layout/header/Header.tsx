@@ -6,7 +6,7 @@ import HeaderContainer from "./HeaderContainer";
 
 const Header = () => {
   return (
-    <header className="mb-6">
+    <header className="py-3 w-full mx-auto">
       <HeaderContainer>
         <SiteLogo />
         <Button onClick={() => {}}>

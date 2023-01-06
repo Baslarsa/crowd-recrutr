@@ -1,6 +1,7 @@
 import { candidates, status } from "@prisma/client";
 import { useEffect, useState } from "react";
 import CandidateList from "../components/candidates/CandidateList";
+import Footer from "../components/layout/footer";
 import Header from "../components/layout/header/Header";
 import PageContainer from "../components/layout/PageContainer";
 import TabNavigation from "../components/TabNavigation";
@@ -20,7 +21,6 @@ export default function Home({ candidates }: { candidates: candidates[] }) {
 
   return (
     <PageContainer>
-      <Header />
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
       <CandidateList candidates={filteredCandidates} />
     </PageContainer>

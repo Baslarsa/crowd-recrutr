@@ -60,7 +60,7 @@ const TabNavigation = ({
     <nav aria-label="Tabs">
       <ol
         role="list"
-        className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0"
+        className="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0 bg-white"
       >
         {tabs.map((tab, tabIdx) => (
           <li
@@ -71,12 +71,12 @@ const TabNavigation = ({
             {tab === activeTab ? (
               <div className="group flex w-full items-center">
                 <span className="flex items-center px-6 py-2 text-sm font-medium">
-                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-sunset">
+                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-black">
                     <span className="text-white">
                       <TabIcon iconName={tab} />
                     </span>
                   </span>
-                  <span className="capitalize ml-4 text-sm font-medium text-gray-900 border-b border-sunset transition-all">
+                  <span className="capitalize ml-4 text-sm font-medium text-gray-900 border-b border-black transition-all">
                     {tab}
                   </span>
                 </span>
@@ -84,8 +84,8 @@ const TabNavigation = ({
             ) : (
               <div className="group flex items-center cursor-pointer">
                 <span className="flex items-center px-6 py-2 text-sm font-medium">
-                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-sunset">
-                    <span className="text-sunset">
+                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-black">
+                    <span className="text-black">
                       <TabIcon iconName={tab} />
                     </span>
                   </span>

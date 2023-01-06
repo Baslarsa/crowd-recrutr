@@ -6,3 +6,15 @@
   font-family: "Grato Grotesk";
   src: url("./fonts/grato-grotesk-medium.otf");
 }
+
+@layer components {
+  #__next {
+    @apply min-h-screen;
+    @apply flex;
+    @apply flex-col;
+  }
+  html,
+  body {
+    @apply min-h-screen;
+  }
+}

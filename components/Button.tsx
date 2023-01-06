@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { on } from "process";
 
 const Button = ({
   children,
@@ -17,10 +18,10 @@ const Button = ({
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 1 }}
-      className="hover:bg-sunset border items-center justify-center border-sunset text-sunset py-2 px-4 rounded-full hover:text-white transition-all cursor-pointer stroke-2 stroke-sunset hover:stroke-white"
+      className="border items-center justify-center text-white py-2 px-4 transition-all duration-100 cursor-pointer stroke-2 stroke-white bg-black hover:bg-gray-700"
     >
-      <p className="transform -translate-y-[1px]">
-        {onClick && <button>{children}</button>}
+      <p>
+        {onClick && <button onClick={onClick}>{children}</button>}
         {href && <Link href={href}>{children}</Link>}
       </p>
     </motion.div>

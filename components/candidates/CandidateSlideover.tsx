@@ -5,6 +5,7 @@ import { candidates } from "@prisma/client";
 import Image from "next/image";
 import CandidateDetails from "./CandidateDetails";
 import ContactBanner from "./ContactBanner";
+import Button from "../Button";
 
 const CandidateSlideover = ({
   candidate,
@@ -15,6 +16,9 @@ const CandidateSlideover = ({
   open: boolean;
   setOpen: (value: boolean) => void;
 }) => {
+  const closeDialog = () => {
+    setOpen(false);
+  };
   return (
     <Dialog as="div" className="relative z-10" onClose={setOpen} open={open}>
       <div className="fixed inset-0" />
@@ -32,7 +36,7 @@ const CandidateSlideover = ({
                       <div className="ml-3 flex h-7 items-center">
                         <button
                           type="button"
-                          className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sunset"
+                          className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
                           onClick={() => setOpen(false)}
                         >
                           <span className="sr-only">Close panel</span>
@@ -62,17 +66,11 @@ const CandidateSlideover = ({
                     {/* /End replace */}
                   </div>
                 </div>
-                <div className="flex flex-shrink-0 justify-end px-4 py-4">
-                  <button
-                    type="button"
-                    className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    onClick={() => setOpen(false)}
-                  >
-                    Close
-                  </button>
+                <div className="flex flex-shrink-0 justify-end px-6 py-4">
+                  <Button onClick={closeDialog}>Close</Button>
                   {/* <button
                         type="submit"
-                        className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-sunset py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sunset focus:outline-none focus:ring-2 focus:ring-sunset focus:ring-offset-2"
+                        className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                       >
                         Save
                       </button> */}
