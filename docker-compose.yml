@@ -1,22 +1,9 @@
 services:
-  app:
-    image: node:18-alpine
-    command: sh -c "npm install && npm run dev"
-    ports:
-      - 3000:3000
-    working_dir: /app
-    volumes:
-      - ./:/app
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: crowd-db
-
   postgres:
     container_name: postgres_crowd
     image: postgres:latest
     environment:
+      DATABASE_URL: postgresql://admin:password@localhost:5432/postgres
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres

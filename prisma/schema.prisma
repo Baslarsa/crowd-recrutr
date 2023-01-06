@@ -11,6 +11,8 @@ model candidates {
   email          String   @id @db.VarChar
   first_name     String   @db.VarChar
   last_name      String   @db.VarChar
+  position       String?  @db.VarChar
+  phone          String?  @db.VarChar
   created_at     DateTime @db.Timestamp(6)
   image_url      String?  @db.VarChar
   current_status status
