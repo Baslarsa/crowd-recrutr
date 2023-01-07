@@ -22,9 +22,14 @@ module.exports = {
           "80%": { color: "##87122f" },
           "100%": { color: "#face20" },
         },
+        slide: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
       },
       animation: {
         "color-trip": "gradient 15s linear infinite",
+        "slide-in-right": "slide 10s linear infinite",
       },
     },
   },

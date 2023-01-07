@@ -1,29 +1,38 @@
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import { on } from "process";
 
 const Button = ({
+  type,
   children,
   onClick,
-  href,
+  className,
+  disabled,
   secondary,
 }: {
+  type?: "submit" | "reset" | "button";
   children: ReactNode;
-  onClick?: () => void;
-  href?: string;
+  onClick?: (value: any) => void;
+  className?: string;
+  disabled?: boolean;
   secondary?: boolean;
 }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 1 }}
-      className="border items-center justify-center text-white py-2 px-4 transition-all duration-100 cursor-pointer stroke-2 stroke-white bg-black hover:bg-gray-700"
+      className={`border items-center justify-center text-white py-2 px-4 transition-all duration-100 cursor-pointer stroke-2 stroke-white bg-black hover:bg-gray-700 ${className} ${
+        secondary &&
+        "bg-white text-gray-700 hover:bg-white hover:text-black hover:border-gray-500"
+      }`}
     >
-      <p>
-        {onClick && <button onClick={onClick}>{children}</button>}
-        {href && <Link href={href}>{children}</Link>}
-      </p>
+      <button
+        type={type || "button"}
+        onClick={onClick}
+        className="h-full w-full"
+        disabled={disabled}
+      >
+        {children}
+      </button>
     </motion.div>
   );
 };

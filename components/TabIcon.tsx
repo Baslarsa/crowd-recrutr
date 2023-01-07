@@ -6,7 +6,6 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import { status } from "@prisma/client";
-import { ReactComponentElement, ReactElement } from "react";
 
 const TabIcon = ({ iconName }: { iconName: status }) => {
   switch (iconName) {

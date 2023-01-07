@@ -1,51 +1,5 @@
-import {
-  CalendarDaysIcon,
-  ChatBubbleBottomCenterTextIcon,
-  DocumentCheckIcon,
-  DocumentMagnifyingGlassIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/solid";
 import { status } from "@prisma/client";
-import { useState } from "react";
 import TabIcon from "./TabIcon";
-
-// const tabs = [
-//   {
-//     id: 1,
-//     name: "Contact",
-//     href: "#",
-//     active: true,
-//     icon: <UserGroupIcon className="h-4 w-4" />,
-//   },
-//   {
-//     id: 2,
-//     name: "Dialogue",
-//     href: "#",
-//     active: false,
-//     icon: <ChatBubbleBottomCenterTextIcon className="h-4 w-4" />,
-//   },
-//   {
-//     id: 3,
-//     name: "Interview",
-//     href: "#",
-//     active: false,
-//     icon: <CalendarDaysIcon className="h-4 w-4" />,
-//   },
-//   {
-//     id: 4,
-//     name: "Offer",
-//     href: "#",
-//     active: false,
-//     icon: <DocumentMagnifyingGlassIcon className="h-4 w-4" />,
-//   },
-//   {
-//     id: 5,
-//     name: "Closed",
-//     href: "#",
-//     active: false,
-//     icon: <DocumentCheckIcon className="h-4 w-4" />,
-//   },
-// ];
 
 const TabNavigation = ({
   activeTab,

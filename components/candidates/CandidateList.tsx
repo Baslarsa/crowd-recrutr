@@ -1,41 +1,49 @@
-import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { candidates } from "@prisma/client";
-import Image from "next/image";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import CandidateSlideover from "./CandidateSlideover";
-import dayjs from "dayjs";
-import ContactBanner from "./ContactBanner";
-import CandidateCard from "./CandidateCard";
+import CandidateCard from "./card/CandidateCard";
+
+export const CandidateContext = createContext<{
+  selectedCandidate: candidates | undefined;
+  openProfile: boolean;
+  setOpenProfile: (value: boolean) => void;
+  setSelectedCandidate: (value: candidates) => void;
+}>({
+  selectedCandidate: undefined,
+  openProfile: false,
+  setOpenProfile: () => {},
+  setSelectedCandidate: () => {},
+});
 
 const CandidateList = ({ candidates }: { candidates: candidates[] }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState<candidates>();
 
-  const handleCardClick = (candidate: candidates) => {
-    setSelectedCandidate(candidate);
-    setOpenProfile(true);
-  };
-
   return (
-    <div className="mx-auto w-full">
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4"
-      >
-        {candidates.map((candidate) => {
-          return (
-            <>
-              <CandidateCard candidate={candidate} onClick={handleCardClick} />
-              <CandidateSlideover
-                open={openProfile}
-                setOpen={setOpenProfile}
-                candidate={selectedCandidate}
-              />
-            </>
-          );
-        })}
-      </ul>
-    </div>
+    <CandidateContext.Provider
+      value={{
+        openProfile,
+        setOpenProfile,
+        setSelectedCandidate,
+        selectedCandidate,
+      }}
+    >
+      <div className="mx-auto w-full">
+        <ul
+          role="list"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4"
+        >
+          {candidates.map((candidate) => {
+            return (
+              <>
+                <CandidateCard candidate={candidate} />
+                <CandidateSlideover />
+              </>
+            );
+          })}
+        </ul>
+      </div>
+    </CandidateContext.Provider>
   );
 };
 
