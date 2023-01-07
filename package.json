@@ -6,7 +6,9 @@
     "dev": "docker-compose up -d && npx next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "cat ./db/init.sql | docker exec -i postgres_crowd psql -U admin -d postgres",
+    "seed": "cat ./db/seed.sql | docker exec -i postgres_crowd psql -U admin -d postgres"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",

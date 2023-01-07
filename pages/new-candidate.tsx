@@ -1,12 +1,15 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
-import NewCandidateForm from "../components/layout/form";
+import NewCandidateForm from "../components/form";
+import PageContainer from "../components/layout/PageContainer";
 
 const NewCandidatePage = () => {
   const router = useRouter();
+
   const backClick = () => {
     router.back();
   };
+
   return (
     <div className="w-full">
       <div
@@ -14,7 +17,7 @@ const NewCandidatePage = () => {
         onClick={backClick}
       >
         <ArrowLeftIcon className="h-6 w-6 stroke-2 stroke-black mr-4" />
-        Tillbaka
+        Back
       </div>
       <div className="rounded-sm shadow w-full max-w-xl mx-auto">
         <NewCandidateForm />

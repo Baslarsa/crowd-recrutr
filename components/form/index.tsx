@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
-import { createCandidate } from "../../../lib/candidates";
-import Button from "../../Button";
+import { createCandidate } from "../../lib/requests";
+import Button from "../Button";
 import Input from "./Input";
 
 export type FormValues = {
@@ -31,14 +31,12 @@ const NewCandidateForm = () => {
     { setSubmitting }: { setSubmitting: (value: boolean) => void }
   ) => {
     setSubmitting(true);
-
     await createCandidate(values);
-
     setSubmitting(false);
   };
   return (
     <div className="bg-white w-full p-4">
-      <h1>My Example</h1>
+      <h1 className="font-bold pb-4">Add new candidate</h1>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="grid grid-cols-2 gap-2">

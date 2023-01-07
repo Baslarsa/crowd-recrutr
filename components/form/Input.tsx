@@ -12,7 +12,7 @@ const Input = ({
   className?: string;
 }) => {
   return (
-    <div className={`flex flex-col ${className}`}>
+    <div className={`flex flex-col text-gray-800 ${className}`}>
       <label htmlFor={name}>{label}</label>
       <Field
         id={name}

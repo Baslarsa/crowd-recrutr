@@ -9,6 +9,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
     ports:
       - "5432:5432"
 

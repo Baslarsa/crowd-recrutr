@@ -1,14 +1,22 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
 import Button from "../../Button";
 import SiteLogo from "../SiteLogo";
 import HeaderContainer from "./HeaderContainer";
+import { motion, spring } from "framer-motion";
 
 const Header = () => {
   const router = useRouter();
   return (
-    <header className="py-3 w-full mx-auto">
+    <motion.header
+      layout
+      className="py-3 w-full mx-auto"
+      transition={spring}
+      key={router.pathname}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <HeaderContainer>
         <SiteLogo />
         <Button onClick={() => router.push("/new-candidate")}>
@@ -18,7 +26,7 @@ const Header = () => {
           </span>
         </Button>
       </HeaderContainer>
-    </header>
+    </motion.header>
   );
 };
 

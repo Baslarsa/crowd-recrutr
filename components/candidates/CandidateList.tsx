@@ -1,7 +1,18 @@
+import { motion } from "framer-motion";
 import { candidates } from "@prisma/client";
 import { createContext, useState } from "react";
 import CandidateSlideover from "./CandidateSlideover";
 import CandidateCard from "./card/CandidateCard";
+
+export const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
 
 export const CandidateContext = createContext<{
   selectedCandidate: candidates | undefined;
@@ -29,19 +40,18 @@ const CandidateList = ({ candidates }: { candidates: candidates[] }) => {
       }}
     >
       <div className="mx-auto w-full">
-        <ul
+        <motion.ul
+          variants={container}
+          initial="hidden"
+          animate="show"
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-4"
         >
           {candidates.map((candidate) => {
-            return (
-              <>
-                <CandidateCard candidate={candidate} />
-                <CandidateSlideover />
-              </>
-            );
+            return <CandidateCard candidate={candidate} />;
           })}
-        </ul>
+          <CandidateSlideover />
+        </motion.ul>
       </div>
     </CandidateContext.Provider>
   );

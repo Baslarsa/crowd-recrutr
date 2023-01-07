@@ -1,13 +1,13 @@
 import Image from "next/image";
 
 const ImageContainer = ({
-  src,
   alt,
   className,
+  src,
 }: {
-  src: string;
   alt: string;
   className: string;
+  src: string;
 }) => {
   return (
     <>

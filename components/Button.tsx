@@ -2,19 +2,19 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 const Button = ({
-  type,
   children,
-  onClick,
   className,
   disabled,
+  onClick,
   secondary,
+  type,
 }: {
-  type?: "submit" | "reset" | "button";
   children: ReactNode;
-  onClick?: (value: any) => void;
   className?: string;
   disabled?: boolean;
+  onClick?: (value: any) => void;
   secondary?: boolean;
+  type?: "submit" | "reset" | "button";
 }) => {
   return (
     <motion.div
