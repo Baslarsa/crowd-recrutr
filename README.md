@@ -12,7 +12,8 @@ Created by David Larsson 2023
 
 1. Install Docker or Docker Desktop and start it.
 2. Run command `npm install`
-3. Run `npm run dev`. It will create the docker container with a postgres database and start the development server for the client.
+3. Run `docker-compose up -d`. It will create the docker container with a postgres database and run it in the background.
 4. Run command `npm run db:migrate` to apply a table to the DB.
 5. Run command `npm run db:seed` to seed data into the DB.
-6. Carpe diem.
+6. Run `npm run dev` that will start the docker containers and run the development server.
+7. Go to `localhost:3000` in the browser and carpe diem.

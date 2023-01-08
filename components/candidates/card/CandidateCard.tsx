@@ -25,7 +25,11 @@ const CandidateCard = ({ candidate }: { candidate: candidates }) => {
       key={candidate.email}
       className="rounded-sm overflow-hidden cursor-pointer col-span-1 flex flex-col divide-y divide-gray-200 bg-white text-center shadow transform hover:-translate-y-1 transition-all duration-200"
     >
-      <div className="flex flex-1 flex-col" onClick={handleClick}>
+      <div
+        className="flex flex-1 flex-col"
+        onClick={handleClick}
+        key={candidate.email}
+      >
         {candidate.image_url && (
           <ImageContainer
             className="object-cover"
