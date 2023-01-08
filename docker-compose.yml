@@ -8,8 +8,7 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - postgres-db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 

@@ -30,17 +30,15 @@ const createCandidate = async (formValues: FormValues) => {
       method: "POST",
     });
 
-    if (!res) {
-      throw new Error("No response from request");
+    if (res.status >= 400) {
+      return false;
     }
 
     const data = await res.json();
 
-    return data;
+    return true;
   } catch (err) {
-    console.log(err);
-
-    throw new Error("Could not create candidate");
+    return false;
   }
 };
 

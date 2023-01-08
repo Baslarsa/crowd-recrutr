@@ -36,7 +36,6 @@ export default function Home({ candidates }: { candidates: candidates[] }) {
 
 export const getServerSideProps = async () => {
   const { candidates } = await getCandidates();
-  console.log(candidates);
   return {
     props: {
       candidates,
