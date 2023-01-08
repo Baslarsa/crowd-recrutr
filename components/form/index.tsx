@@ -3,29 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { createCandidate } from "../../lib/requests";
 import Button from "../Button";
-import Input from "./Input";
 import * as Yup from "yup";
-
-export type FormValues = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  position: string;
-  image_url: string;
-};
-
-const FormSchema = Yup.object().shape({
-  first_name: Yup.string()
-    .min(2, "Last name too Short!")
-    .max(50, "Last name too Long!")
-    .required("First name required"),
-  last_name: Yup.string()
-    .min(2, "Last name too Short!")
-    .max(50, "Last name too Long!")
-    .required("Last name required"),
-  email: Yup.string().email("Invalid email").required("Email required"),
-});
+import Fields from "./Fields";
 
 const NewCandidateForm = () => {
   const router = useRouter();
@@ -65,6 +44,7 @@ const NewCandidateForm = () => {
     } catch (error) {
       setRequestMessage("Something went wrong");
       setSubmitting(false);
+      console.error(error);
     }
   };
   return (
@@ -73,47 +53,11 @@ const NewCandidateForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={FormSchema}
+        validationSchema={FormValidationSchema}
       >
         {({ isSubmitting, errors, touched }) => (
           <Form className="grid grid-cols-2 gap-2">
-            <Input
-              name="position"
-              label="For job position"
-              className="col-span-2"
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              name="first_name"
-              label="First name"
-              className="col-span-2 md:col-span-1"
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              name="last_name"
-              label="Last name"
-              className="col-span-2 md:col-span-1"
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              type="email"
-              name="email"
-              label="Email"
-              className="col-span-2 md:col-span-1"
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              type="phone"
-              name="phone"
-              label="Phone"
-              className="col-span-2 md:col-span-1"
-              errors={errors}
-              touched={touched}
-            />
+            <Fields errors={errors} touched={touched} />
             <p className="py-2 text-sm col-span-2 md:col-span-1">
               You don't get to choose a profile image,
               <br />I just assume you're a fluffy cat. 😺
@@ -125,14 +69,41 @@ const NewCandidateForm = () => {
             >
               {<p>{isSubmitting ? "Saving..." : "Save"}</p>}
             </Button>
-            <div className="text-center">
-              <p className="text-right">{requestMessage}</p>
-            </div>
+            {requestMessage && (
+              <div className="text-center">
+                <p className="text-right">{requestMessage}</p>
+              </div>
+            )}
           </Form>
         )}
       </Formik>
     </div>
   );
 };
+
+export type FormValues = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  position: string;
+  image_url: string;
+};
+
+const FormValidationSchema = Yup.object().shape({
+  first_name: Yup.string()
+    .min(2, "Last name too Short!")
+    .max(50, "Last name too Long!")
+    .required("First name required"),
+  last_name: Yup.string()
+    .min(2, "Last name too Short!")
+    .max(50, "Last name too Long!")
+    .required("Last name required"),
+  email: Yup.string().email("Invalid email").required("Email required"),
+  phone: Yup.string()
+    .min(2, "Phone number too Short!")
+    .max(50, "Phone number too Long!")
+    .required("Phone number required"),
+});
 
 export default NewCandidateForm;

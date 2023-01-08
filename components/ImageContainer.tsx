@@ -11,7 +11,7 @@ const ImageContainer = ({
 }) => {
   return (
     <>
-      <div className=" h-56 w-full relative mx-auto">
+      <div className="h-56 w-full relative mx-auto">
         <Image
           className={`object-cover ${className}`}
           src={src}

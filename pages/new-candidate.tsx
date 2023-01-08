@@ -1,7 +1,6 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import NewCandidateForm from "../components/form";
-import PageContainer from "../components/layout/PageContainer";
 
 const NewCandidatePage = () => {
   const router = useRouter();

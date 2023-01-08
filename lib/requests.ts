@@ -1,8 +1,16 @@
 import { FormValues } from "../components/form";
+import { endpoints } from "./constants";
+
+const postHeaders = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+  method: "POST",
+};
 
 const getCandidates = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/candidates`);
+    const res = await fetch(endpoints.allCandidates);
 
     if (!res) {
       throw new Error("No response from request");
@@ -22,19 +30,16 @@ const createCandidate = async (formValues: FormValues) => {
   if (!formValues) throw new Error("No email provided");
 
   try {
-    const res = await fetch(`http://localhost:3000/api/candidates/new`, {
+    const res = await fetch(endpoints.createCandidate, {
       body: JSON.stringify({ ...formValues }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
+      ...postHeaders,
     });
 
     if (res.status >= 400) {
       return false;
     }
 
-    const data = await res.json();
+    await res.json();
 
     return true;
   } catch (err) {
@@ -46,12 +51,9 @@ const advanceCandidate = async (email: string) => {
   if (!email) throw new Error("No email provided");
 
   try {
-    const res = await fetch(`http://localhost:3000/api/candidates/update`, {
+    const res = await fetch(endpoints.updateStatus, {
       body: JSON.stringify({ email }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
+      ...postHeaders,
     });
 
     if (!res) {
@@ -72,12 +74,9 @@ const deleteCandidate = async (email: string) => {
   if (!email) throw new Error("No email provided");
 
   try {
-    const res = await fetch(`http://localhost:3000/api/candidates/delete`, {
+    const res = await fetch(endpoints.deleteCandidate, {
       body: JSON.stringify({ email }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
+      ...postHeaders,
     });
 
     if (!res) {

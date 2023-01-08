@@ -1,13 +1,9 @@
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { useContext } from "react";
+import { containerAnimation } from "../../lib/constants";
 import { CandidateContext } from "./CandidateList";
 import DialogPanel from "./DialogPanel";
-
-const container = {
-  hidden: { x: 100 },
-  show: { x: 0 },
-};
 
 const CandidateSlideover = () => {
   const { setOpenProfile, openProfile } = useContext(CandidateContext);
@@ -25,7 +21,7 @@ const CandidateSlideover = () => {
     >
       <motion.div
         className="fixed inset-0 overflow-hidden"
-        variants={container}
+        variants={containerAnimation}
         initial="hidden"
         animate="show"
       >

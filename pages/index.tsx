@@ -9,21 +9,24 @@ const filterCandidates = (candidates: candidates[], activeTab: status) => {
   return candidates.filter((c) => c.current_status === activeTab);
 };
 
-export default function Home({ candidates }: { candidates: candidates[] }) {
+const Home = ({ candidates }: { candidates: candidates[] }) => {
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState<status>(
     (router.query.tab as status) || (status.contact as status)
   );
-
   let filteredCandidates = filterCandidates(candidates, activeTab);
 
-  useEffect(() => {
+  const updateTabRoute = () => {
     router.push(`/?tab=${activeTab}`, undefined, { shallow: true });
+  };
+
+  useEffect(() => {
+    updateTabRoute();
   }, [activeTab]);
 
   useEffect(() => {
-    router.push(`/?tab=${activeTab}`, undefined, { shallow: true });
+    updateTabRoute();
   }, []);
 
   return (
@@ -32,7 +35,7 @@ export default function Home({ candidates }: { candidates: candidates[] }) {
       <CandidateList candidates={filteredCandidates} />
     </>
   );
-}
+};
 
 export const getServerSideProps = async () => {
   const { candidates } = await getCandidates();
@@ -42,3 +45,5 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
+export default Home;

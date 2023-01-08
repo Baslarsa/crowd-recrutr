@@ -3,16 +3,7 @@ import { candidates } from "@prisma/client";
 import { createContext, useState } from "react";
 import CandidateSlideover from "./CandidateSlideover";
 import CandidateCard from "./card/CandidateCard";
-
-export const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
+import { listContainerAnimation } from "../../lib/constants";
 
 export const CandidateContext = createContext<{
   selectedCandidate: candidates | undefined;
@@ -30,6 +21,7 @@ const CandidateList = ({ candidates }: { candidates: candidates[] }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState<candidates>();
 
+  if (!candidates) return <>Could not fetch candidates</>;
   return (
     <CandidateContext.Provider
       value={{
@@ -41,7 +33,7 @@ const CandidateList = ({ candidates }: { candidates: candidates[] }) => {
     >
       <div className="mx-auto w-full">
         <motion.ul
-          variants={container}
+          variants={listContainerAnimation}
           initial="hidden"
           animate="show"
           role="list"

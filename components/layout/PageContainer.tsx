@@ -1,15 +1,6 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
 import Header from "./header/Header";
-import { useRouter } from "next/router";
-
-export const spring = {
-  type: "spring",
-  damping: 30,
-  stiffness: 1,
-  when: "afterChildren",
-  duration: 5,
-};
 
 const PageContainer = ({ children }: { children: ReactNode }) => {
   return (
